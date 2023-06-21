@@ -2,6 +2,7 @@
 
 int main()
 {
-    std::cout << "Hello, World!\n";
+    double a = -0;
+    std::cout << a << "Hello, World!\n";
     return 0;
 }
