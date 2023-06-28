@@ -1,0 +1,33 @@
+чтобы создать дополнительный объеект в динамичекской области:
+int* pa = new int; // без инициализации
+int* pb = new int(11); // инициализации числом 11
+int* pc = new int{13}; // инициализации числом 13
+динамичекские области обязан следить програмист 
+
+Пример
+int* p = nullptr;
+{
+    int x = 11
+    p = new int(13);
+}
+std::cout << x // CE
+std::cout << *p; // ok, 13
+...
+delete p; // очищение памяти
+
+Правило: delete -- для указателей с new, удалять nullptr
+
+ДИНАМИЧЕСКИЕ МАССИВЫ
+int* array = new int[10];
+
+Вводится 1<n<10000000, вывести массив n элементов
+int n;
+std::cin >> n;
+int* array = new int[n];
+for (int i = 0; i < n; ++i){
+    int a;
+    array[i] = std::cin >> a;
+}
+for (int i = 0; i < n; ++i){
+    std::cout << array[i] << ' ';
+}

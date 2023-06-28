@@ -1,0 +1,7 @@
+char
+int (short, long, long long)
+float, double
+
+// операции
+sizof(x = x+5) - не меняет значения x, лишь анализирует выражение в скобках
+static_cast<float>(x) приводит x к float, не меняя при этом сам x
