@@ -13,5 +13,5 @@ int main(){
         std::cout << array[i] << ' ';
     }
     std::cout << "\n";
-    delete array;
+    delete[] array;
 }

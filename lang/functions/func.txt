@@ -1,0 +1,66 @@
+ReturnType Name(type1 arg1, ..., typen argn){
+    ///
+}
+ex:
+float sum(float a, float b){
+    return a+b
+}
+
+Могут быть аргументы по умолчанию(стоят в конце):
+
+float sum(float a, float b, float c = 0){
+    return a+b+c
+}
+
+функция ничего не возращает(например лишь что-то печатает) -- void
+void Print(int x){
+    std::cout << x << "\n";
+}
+
+ПРОБЛЕМА - смена локальных переменных другой функции -> решение: УКАЗАТЕЛИ
+
+void Swap(int* px, int* py){
+    int tmp = *px; // запоминаем значение x
+    *px = *py; // кладем в x значение y 
+    *py = tmp; // кладем в y запомненное значение
+
+}
+
+int main(){
+    int x = 1;
+    int y = 0;
+
+    Swap(&x, &y);    
+    std::cout << x << " " << y << "\n";
+
+}
+
+/*
+Передача массивов
+Самый простой способ передать массив в функцию - передать указатель на
+начало + размер массива:
+*/
+
+int Max(const int* array, int size) {
+    int max = array[0]; // предполагаем size > 0
+    for (int i = 1; i < size; ++i) {
+        if (max < array[i]) max = array[i];
+    }
+    return max;
+    }
+int main() {
+    int array[100]; // или int* array = new int[100];
+    for (int i = 0; i < 100; ++i) std::cin >> array[i];
+        std::cout << Max(array, 100) << '\n';
+    // delete[] array;
+}
+
+void f(int (&array_ref)[50]) {}
+int main() {
+    int normal[50];
+    f(normal); // Ok
+    int large[100];
+    f(large); // Compilation error
+    int small[10];
+    f(small); // Compilation error
+}
