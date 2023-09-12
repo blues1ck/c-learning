@@ -1,7 +1,10 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <sys/types.h>
+
 #include "read_cmd.h"
 #include "parse.h"
 
@@ -18,7 +21,7 @@ pid_t pid;                          // global variable for the child process ID
 char i;	
 
 int main(){
-    // start the shell
+    // start the shell-wrapper
     run_cmd();
 
     return 0;
@@ -26,14 +29,14 @@ int main(){
 
 static void run_cmd(){
     while(1){
-        // get the command from user
+        // get the command from cmd
         read_cmd();
 
         // bypass empty commands
         if(!strcmp("", cmd)) continue;
 
         // check for "exit" command
-                if(!strcmp("exit", cmd)) break;
+        if(!strcmp("exit", cmd)) break;
 
         // fit the command into *argv[]
         parse_cmd();
